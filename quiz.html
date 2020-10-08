@@ -14,7 +14,7 @@
 
 
     <div class="head">
-        <h1>Timer: <span class="timer">0</span></h1>
+        <h1>Timer: <span class="timer">60</span></h1>
         <h2>score:<span class="score">0</span></h2>
     </div>
 
@@ -26,9 +26,25 @@
        <div class="play-button">
         <!-- <button class="prev  btn btn-warning">prev</button> -->
         <!-- <button class="next btn btn-warning">next</button> -->
+       <div class="control">
         <button class="start btn btn-danger">start</button>
+        <button type="button" class="btn btn-primary btn-warning" data-toggle="modal" data-target=".bd-example-modal-sm">Ranking</button>
+        </div>
     </div>
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-sm">Small modal</button>
+    
+
+<div class="modal fade bd-example-modal-sm scores" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+     <div class="ranking">Ranking:
+      <ul class="players">
+
+      </ul>   
+    
+    </div>
+    </div>
+  </div>
+</div>
 
     </div>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

@@ -3,6 +3,7 @@ var answerEl = document.querySelector('.answers');
 var btnNext = document.querySelector('.next');
 var btnPrev = document.querySelector('.prev');
 var btnStart = document.querySelector('.start');
+var controlsContainer = document.querySelector('.control')
 var timerCount = 60;
 var scoreCount=0;
 var timerEl = document.querySelector('.timer');
@@ -40,12 +41,13 @@ function next() {
     if (questionNumber < quiz.length) {
         generateQuestion();
          countEl.textContent = scoreCount;} 
-         else { clearInterval(setTime2)
+         else { 
             if(scoreCount > 2 ){
-        
              answerEl.innerHTML= `<h1> your score is: ${scoreCount} out of 4 YOU PASSED!!!</h1>`;
-            } else { answerEl.innerHTML=`<h1> your score is: ${scoreCount} out of 4 TRY AGAIN!!!</h1>`;
-           btnStart.style.display = 'block';
+            } 
+            else { answerEl.innerHTML=`<h1> your score is: ${scoreCount} out of 4 TRY AGAIN!!!</h1>`;
+          
+            controlsContainer.style.display = 'block';
         }
          }
 }
@@ -53,19 +55,29 @@ function next() {
 //Function to make the timer work
 function setTime() {
     if (timerCount > 0) { 
-        btnStart.style.display = 'none';
         generateQuestion();
         var setTime2 = setInterval(function () {
             timerCount--;
-            if (timerCount == 0 || questionNumber == 4) {
-                clearInterval(setTime2)
+            if (timerCount == 0 || questionNumber >= 4) {
+                clearInterval(setTime2);
+                var player = document.createElement('li');
+                player.innerHTML= `hey: ${scoreCount}`;
+                document.querySelector('.players').appendChild(player);
             }
             timerEl.textContent = timerCount;
         }, 1000)
     }
 };
-
-btnStart.addEventListener('click', setTime)
+//function for the start button it set everything to default; 
+function startQuiz (){
+    timerCount= 60;
+    scoreCount= 0;
+    questionNumber=0;
+    controlsContainer.style.display= 'none';
+    setTime();
+}
+//eventListener for the start button 
+btnStart.addEventListener('click', startQuiz)
 
 
 //generate the question and its answers

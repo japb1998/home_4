@@ -18,20 +18,22 @@ body {background: #6bb7bd; }
 .card-header{ text-align: center;}
 .card-body{ margin: 0 auto;}
 
-.btn { margin: .4rem;
+.btn { width: 100%;
+    margin: .3rem;
+    padding:  1rem 2rem;
 }
 
 .correct { background: green;}
 .correct:hover { background: green;}
 .incorrect {background : red }
 .incorrect:hover { background: red;}
-.start { margin: 0 auto ;
-    padding: 2rem;
+/* .start { margin: 0 auto ;
+    
 width: 100%;
-}
+} */
 @media only screen and (max-width: 768px) {
     .container {
-        height: 20rem;
+        height: 30rem;
     }
   }
   @media only screen and (max-width: 425px) {
