@@ -1,0 +1,44 @@
+* {
+    margin: 0; 
+    padding: 0;
+box-sizing: border-box;
+}
+body {background: #6bb7bd; }
+
+.head { 
+    width: 100vw;
+} 
+.container{
+    margin: 0 auto;
+    width: 80%;
+    height: 50% ;
+    border: solid 1px black;
+    background: #3252bb;
+}
+.card-header{ text-align: center;}
+.card-body{ margin: 0 auto;}
+
+.btn { margin: .4rem;
+}
+
+.correct { background: green;}
+.correct:hover { background: green;}
+.incorrect {background : red }
+.incorrect:hover { background: red;}
+.start { margin: 0 auto ;
+    padding: 2rem;
+width: 100%;
+}
+@media only screen and (max-width: 768px) {
+    .container {
+        height: 20rem;
+    }
+  }
+  @media only screen and (max-width: 425px) {
+    .container {
+        
+        width: 100vw;
+        height: 50vh;
+    }
+   
+  }
