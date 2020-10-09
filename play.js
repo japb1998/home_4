@@ -12,6 +12,12 @@ var scoreCount = 0;
 var setTime2;
 var playerName;
 var playersList = [];
+var storedList =  JSON.parse(localStorage.getItem('playerList'));
+console.log(storedList)
+if(Array.isArray(storedList)){
+playersList = storedList;
+playersList.forEach(createRanking);
+}
 
 var quiz = [{
         question: "Wich one of this is an html tag?",
@@ -63,23 +69,30 @@ function setTime() {
             if (timerCount == 0 || questionNumber >= 4) {
 
                 clearInterval(setTime2);
-                var player = document.createElement('li');
-                player.innerHTML = `${playerName}: ${scoreCount}`;
+            
                 var storedPlayer = {};
                 storedPlayer.player = playerName;
                 storedPlayer.score = scoreCount;
-                playersList.push(storedPlayer)
-                document.querySelector('.players').appendChild(player);
-                
-                localStorage.setItem(`${playerName}`, JSON.stringify(playersList));
+                playersList.push(storedPlayer);
+                localStorage.setItem(`playerList`, JSON.stringify(playersList));
+                createRanking(storedPlayer);
+            
             }
             timerEl.textContent = timerCount;
         }, 1000)
-        
     }
     
 };
-localStorage.setItem('pastPlayer', JSON.stringify(playersList));
+
+//list my ranking
+function createRanking (answer){
+    var playerLi = answer.player ;
+    var scoreLi = answer.score ; 
+    var player = document.createElement('li');
+player.innerHTML = `${playerLi}: ${scoreLi}`;
+document.querySelector('.players').appendChild(player); }
+
+
 //function for the start button it set everything to default; 
 function startQuiz() {
     if (playerInput.value) {
