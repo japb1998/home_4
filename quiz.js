@@ -40,23 +40,23 @@ var quiz = [{
         correct: 1
     }
 ];
+ function gameOver (){ if (scoreCount > 2) {
+    answerEl.innerHTML = `<h1> your score is: ${scoreCount} out of 4 YOU PASSED!!!</h1>`;
+} else {
+    answerEl.innerHTML = `<h1> your score is: ${scoreCount} out of 4 TRY AGAIN!!!</h1>`;
 
 
+}
+controlsContainer.style.display = 'block';
+ }
 //click
 function next() {
     questionNumber++;
     if (questionNumber < quiz.length) {
         generateQuestion();
         countEl.textContent = scoreCount;
-    } else {
-        if (scoreCount > 2) {
-            answerEl.innerHTML = `<h1> your score is: ${scoreCount} out of 4 YOU PASSED!!!</h1>`;
-        } else {
-            answerEl.innerHTML = `<h1> your score is: ${scoreCount} out of 4 TRY AGAIN!!!</h1>`;
-
-
-        }
-        controlsContainer.style.display = 'block';
+    } else { gameOver();
+        
     }
 }
 
@@ -69,7 +69,8 @@ function setTime() {
             if (timerCount == 0 || questionNumber >= 4) {
 
                 clearInterval(setTime2);
-
+                gameOver();
+                
                 var storedPlayer = {};
                 storedPlayer.player = playerName;
                 storedPlayer.score = scoreCount;
