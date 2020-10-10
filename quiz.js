@@ -16,6 +16,9 @@ var storedList = JSON.parse(localStorage.getItem('playerList'));
 console.log(storedList)
 if (Array.isArray(storedList)) {
     playersList = storedList;
+    playersList.sort(function(a, b){
+        return b.score - a.score;
+    });
     playersList.forEach(createRanking);
 }
 
@@ -77,8 +80,13 @@ function setTime() {
                 playersList.push(storedPlayer);
                 localStorage.setItem(`playerList`, JSON.stringify(playersList));
                //calling the createRanking with the last player
-                createRanking(storedPlayer);
-                
+               
+                document.querySelector('.players').textContent = "";
+                playersList.sort(function(a, b){
+                    return b.score - a.score;
+                });
+                playersList.forEach(createRanking);
+            
             }
             timerEl.textContent = timerCount;
         }, 1000)
