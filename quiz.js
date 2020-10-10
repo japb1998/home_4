@@ -12,11 +12,11 @@ var scoreCount = 0;
 var setTime2;
 var playerName;
 var playersList = [];
-var storedList =  JSON.parse(localStorage.getItem('playerList'));
+var storedList = JSON.parse(localStorage.getItem('playerList'));
 console.log(storedList)
-if(Array.isArray(storedList)){
-playersList = storedList;
-playersList.forEach(createRanking);
+if (Array.isArray(storedList)) {
+    playersList = storedList;
+    playersList.forEach(createRanking);
 }
 
 var quiz = [{
@@ -69,28 +69,30 @@ function setTime() {
             if (timerCount == 0 || questionNumber >= 4) {
 
                 clearInterval(setTime2);
-            
+
                 var storedPlayer = {};
                 storedPlayer.player = playerName;
                 storedPlayer.score = scoreCount;
                 playersList.push(storedPlayer);
                 localStorage.setItem(`playerList`, JSON.stringify(playersList));
+               //calling the createRanking with the last player
                 createRanking(storedPlayer);
-            
+                
             }
             timerEl.textContent = timerCount;
         }, 1000)
     }
-    
+
 };
 
 //list my ranking
-function createRanking (answer){
-    var playerLi = answer.player ;
-    var scoreLi = answer.score ; 
+function createRanking(answer) {
+    var playerLi = answer.player;
+    var scoreLi = answer.score;
     var player = document.createElement('li');
-player.innerHTML = `${playerLi}: ${scoreLi}`;
-document.querySelector('.players').appendChild(player); }
+    player.innerHTML = `${playerLi}: ${scoreLi}`;
+    document.querySelector('.players').appendChild(player);
+}
 
 
 //function for the start button it set everything to default; 
