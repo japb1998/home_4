@@ -16,7 +16,7 @@ var storedList = JSON.parse(localStorage.getItem('playerList'));
 console.log(storedList)
 if (Array.isArray(storedList)) {
     playersList = storedList;
-    playersList.sort(function(a, b){
+    playersList.sort(function (a, b) {
         return b.score - a.score;
     });
     playersList.forEach(createRanking);
@@ -43,25 +43,28 @@ var quiz = [{
         correct: 1
     }
 ];
- function gameOver (){  timerCount = 0 ;
-  if (scoreCount > 2) { 
-     
-    answerEl.innerHTML = `<h1> your score is: ${scoreCount} out of 4 YOU PASSED!!!</h1>`;
-} else {
-    answerEl.innerHTML = `<h1> your score is: ${scoreCount} out of 4 TRY AGAIN!!!</h1>`;
+
+function gameOver() {
+    timerCount = 0;
+    if (scoreCount > 2) {
+
+        answerEl.innerHTML = `<h1> your score is: ${scoreCount} out of 4 YOU PASSED!!!</h1>`;
+    } else {
+        answerEl.innerHTML = `<h1> your score is: ${scoreCount} out of 4 TRY AGAIN!!!</h1>`;
 
 
+    }
+    controlsContainer.style.display = 'block';
 }
-controlsContainer.style.display = 'block';
- }
 //click
 function next() {
     questionNumber++;
     if (questionNumber < quiz.length) {
         generateQuestion();
         countEl.textContent = scoreCount;
-    } else { gameOver();
-        
+    } else {
+        gameOver();
+
     }
 }
 
@@ -80,17 +83,17 @@ function setTime() {
                 storedPlayer.score = scoreCount;
                 playersList.push(storedPlayer);
                 localStorage.setItem(`playerList`, JSON.stringify(playersList));
-               //calling the createRanking with the last player
-               
+                //calling the createRanking with the last player
+
                 document.querySelector('.players').textContent = "";
-                playersList.sort(function(a, b){
+                playersList.sort(function (a, b) {
                     return b.score - a.score;
                 });
                 playersList.forEach(createRanking);
-            
+
             }
-            timerEl.textContent = timerCount 
-            
+            timerEl.textContent = timerCount
+
         }, 1000)
     }
 
@@ -152,10 +155,10 @@ function generateQuestion() {
                     countEl.textContent = scoreCount;
                     console.log('incorrect');
                     answerTest.classList.add('incorrect');
-                    setTimeout(next, 500) 
-                     
-                    
-                    
+                    setTimeout(next, 500)
+
+
+
 
                 }
 
