@@ -43,7 +43,9 @@ var quiz = [{
         correct: 1
     }
 ];
- function gameOver (){ if (scoreCount > 2) {
+ function gameOver (){  timerCount = 0 ;
+  if (scoreCount > 2) { 
+     
     answerEl.innerHTML = `<h1> your score is: ${scoreCount} out of 4 YOU PASSED!!!</h1>`;
 } else {
     answerEl.innerHTML = `<h1> your score is: ${scoreCount} out of 4 TRY AGAIN!!!</h1>`;
@@ -69,11 +71,10 @@ function setTime() {
         generateQuestion();
         var setTime2 = setInterval(function () {
             timerCount--;
-            if (timerCount == 0 || questionNumber >= 4) {
+            if (timerCount < 0 || questionNumber >= 4) {
 
                 clearInterval(setTime2);
                 gameOver();
-                
                 var storedPlayer = {};
                 storedPlayer.player = playerName;
                 storedPlayer.score = scoreCount;
@@ -88,7 +89,8 @@ function setTime() {
                 playersList.forEach(createRanking);
             
             }
-            timerEl.textContent = timerCount;
+            timerEl.textContent = timerCount 
+            
         }, 1000)
     }
 
@@ -146,12 +148,14 @@ function generateQuestion() {
                     setTimeout(next, 500)
 
                 } else {
-                    countEl.textContent = scoreCount;
-                    console.log('incorrect')
                     timerCount -= 10;
+                    countEl.textContent = scoreCount;
+                    console.log('incorrect');
                     answerTest.classList.add('incorrect');
-                    setTimeout(next, 500)
-
+                    setTimeout(next, 500) 
+                     
+                    
+                    
 
                 }
 
